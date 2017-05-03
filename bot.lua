@@ -496,23 +496,7 @@ function tdcli_update_callback(data)
 					local offlink = redis:get("botBOT-IDofflink") and "⛔️" or "✅️"
 					local nlink = redis:get("botBOT-IDlink") and "✅️" or "⛔️"
 					local contacts = redis:get("botBOT-IDsavecontacts") and "✅️" or "⛔️"
-					
-					memTotal_b=`free -b |grep Mem |awk '{print $2}'`
-memFree_b=`free -b |grep Mem |awk '{print $4}'`
-memBuffer_b=`free -b |grep Mem |awk '{print $6}'`
-memCache_b=`free -b |grep Mem |awk '{print $7}'`
-
-memTotal_m=`free -m |grep Mem |awk '{print $2}'`
-memFree_m=`free -m |grep Mem |awk '{print $4}'`
-memBuffer_m=`free -m |grep Mem |awk '{print $6}'`
-memCache_m=`free -m |grep Mem |awk '{print $7}'`
-CPUPer=`top -b -n1 | grep "Cpu(s)" | awk '{print $2 + $4}'`
-uptime=`uptime`
-ProcessCnt=`ps -A | wc -l`
-memUsed_b=$(($memTotal_b-$memFree_b-$memBuffer_b-$memCache_b))
-memUsed_m=$(($memTotal_m-$memFree_m-$memBuffer_m-$memCache_m))
-					
-					local txt = "⚙️  <i>وضعیت اجرایی تبلیغ‌گر</i><code> BOT-ID</code>  ⛓\n\n"..tostring(offjoin).."<code> عضویت خودکار </code>🚀\n"..tostring(offlink).."<code> تایید لینک خودکار </code>🚦\n"..tostring(nlink).."<code> تشخیص لینک های عضویت </code>🎯\n"..tostring(contacts).."<code> افزودن خودکار مخاطبین </code>➕\n" .. tostring(autoanswer) .."<code> حالت پاسخگویی خودکار 🗣 </code>\n" .. tostring(numadd) .. "<code> افزودن مخاطب با شماره 📞 </code>\n" .. tostring(msgadd) .. "<code> افزودن مخاطب با پیام 🗞</code>\n〰〰〰ا〰〰〰\n📄<code> پیام افزودن مخاطب :</code>\n📍 " .. tostring(txtadd) .. " 📍\n〰〰〰ا〰〰〰\n\n<code>📁 لینک های ذخیره شده : </code><b>" .. tostring(links) .. "</b>\n<code>⏲	لینک های در انتظار عضویت : </code><b>" .. tostring(glinks) .. "</b>\n🕖   <b>" .. tostring(s) .. " </b><code>ثانیه تا عضویت مجدد</code>\n<code>❄️ لینک های در انتظار تایید : </code><b>" .. tostring(wlinks) .. "</b>\n🕑️   <b>" .. tostring(ss) .. " </b><code>ثانیه تا تایید لینک مجدد</code>\n〰〰〰ا〰〰〰\n echo "📌مقدار رم: $memTotal_m MB" \n echo "📌میزان رم در حال استفاده: $memUsed_m MB - $memUsedPrc% used!" \n echo '📌سی پیو درحال استفاده : '"$CPUPer"'%' \n echo '📌تعداد برنامه های درحال اجرا : '"$ProcessCnt" \n〰〰〰ا〰〰〰\n 🖥تهیه سرور مناسب : \n 🌐 MehrServer.Net"
+					local txt = "⚙️  <i>وضعیت اجرایی تبلیغ‌گر</i><code> BOT-ID</code>  ⛓\n\n"..tostring(offjoin).."<code> عضویت خودکار </code>🚀\n"..tostring(offlink).."<code> تایید لینک خودکار </code>🚦\n"..tostring(nlink).."<code> تشخیص لینک های عضویت </code>🎯\n"..tostring(contacts).."<code> افزودن خودکار مخاطبین </code>➕\n" .. tostring(autoanswer) .."<code> حالت پاسخگویی خودکار 🗣 </code>\n" .. tostring(numadd) .. "<code> افزودن مخاطب با شماره 📞 </code>\n" .. tostring(msgadd) .. "<code> افزودن مخاطب با پیام 🗞</code>\n〰〰〰ا〰〰〰\n📄<code> پیام افزودن مخاطب :</code>\n📍 " .. tostring(txtadd) .. " 📍\n〰〰〰ا〰〰〰\n\n<code>📁 لینک های ذخیره شده : </code><b>" .. tostring(links) .. "</b>\n<code>⏲	لینک های در انتظار عضویت : </code><b>" .. tostring(glinks) .. "</b>\n🕖   <b>" .. tostring(s) .. " </b><code>ثانیه تا عضویت مجدد</code>\n<code>❄️ لینک های در انتظار تایید : </code><b>" .. tostring(wlinks) .. "</b>\n🕑️   <b>" .. tostring(ss) .. " </b><code>ثانیه تا تایید لینک مجدد</code>\n〰〰〰ا〰〰〰\n 🖥تهیه سرور مناسب : \n 🌐 MehrServer.Net"
 					return send(msg.chat_id_, 0, txt)
 				elseif text:match("^(امار)$") or text:match("^(آمار)$") then
 					local gps = redis:scard("botBOT-IDgroups")
